@@ -1,0 +1,114 @@
+@import '../node_modules/bootstrap/scss/functions';
+@import './bootstrap/_variables.scss';
+@import "./bootstrap/_utilities.scss";
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+
+
+@import url(./variables.scss);
+@import url(./font.scss);
+@import url(./rest.css);
+
+
+$ue-width: 1440; /* ue图的宽度 */
+@function px2rem($px) {
+  @return calc($px / 20)* 1rem;
+}
+
+html {
+  font-size: 1rem;
+  @include media-breakpoint-up(sm) {
+    font-size: 1.0625rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.125rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: 1.125rem;
+  }
+
+}
+
+.menu-grid-wrapper {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: calc(90% - 48px);
+  color: #fff;
+  @include media-breakpoint-up(sm) {
+    padding: 0 px2rem(80);
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
+    grid-template-rows: repeat(13, 1fr);
+    grid-gap: 20px;
+  }
+}
+#app {
+  .menu-grid-wrapper {
+    @include media-breakpoint-down(sm) {
+      .menu-grid{
+        padding: 12px 10px;
+        border-radius: 0;
+        flex:1;
+        flex-direction: row;
+        align-items: center;
+      }
+      .menu-grid:nth-child(n) {
+        justify-content: flex-start;
+      }
+      .menu-grid:nth-child(2n) {
+        justify-content: flex-end;
+      }
+    }
+  }
+  .moblie-wrapper {
+    position: relative;
+    .nex-btn, .prv-btn {
+      z-index: 999;
+      top:  160px;
+    }
+    .nex-btn {
+      left: calc(3rem - 24px);
+    }
+    .prv-btn {
+      right: calc(3rem - 24px);
+    }
+
+    @include media-breakpoint-up(md) {
+      .nex-btn {
+        top:  calc(50% - 56px);
+        left: calc(4.5rem - 32px);
+      }
+      .prv-btn {
+        top:  calc(50% - 56px);
+        right: calc(4.5rem - 32px);
+      }
+    }
+    @include media-breakpoint-up(lg) {
+      .nex-btn {
+        left: calc(10rem - 80px);
+      }
+      .prv-btn {
+        right: calc(10rem - 80px);
+      }
+    }
+  }
+}
+
+
+.g-logo {
+  position: relative;
+  display: block;
+  padding-top:  px2rem(88);
+  width: px2rem(198);
+  height: 0;
+  text-indent: -9999px;
+  background: url(../logo.png) center no-repeat;
+  background-size: contain;
+}
+
