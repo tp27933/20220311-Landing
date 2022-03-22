@@ -4,15 +4,16 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/20220311-Landing/',
   plugins: [vue()],
   resolve: {
     alias: [{ find: '@', replacement: resolve(__dirname, 'src') }],
   },
   css: {
-    // preprocessorOptions: {
-    //   scss: {
-    //     additionalData: '@import "@/assets/style/main.scss";',
-    //   },
-    // },
+    preprocessorOptions: {
+      scss: {
+        charset: false
+      }
+    }
   }
 })
