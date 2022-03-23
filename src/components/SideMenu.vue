@@ -2,10 +2,12 @@
 <template>
   <nav class="menu" :class="{'active': isShow}" @touchmove.prevent.stop>
     <header>
-      <h1>
+      <!-- <h1>
         <a href="/" class="g-logo logo">DigiSalad</a>
-      </h1>
-      <span class="close" @click="emit('close')" />
+      </h1> -->
+      <button @click="emit('close')" class="closeBtn">
+        <span class="close" />
+      </button>
     </header>
 
     <ul class="menu-grid-wrapper">
@@ -28,22 +30,22 @@
 import { onMounted, reactive, ref, watch } from 'vue'
 import { gsap, Expo } from 'gsap'
 
-const createImg = (src) => {
-  return new URL(src, import.meta.url).href
-}
+// const createImg = (src) => {
+//   return new URL(src, import.meta.url)
+// }
 const grid = reactive([
   {
-    icon: createImg('../assets/Frame.png'),
+    icon: '/src/assets/Frame.png',
     title: 'ABOUT US',
     subTitle: 'EMPOWERING BRANDS',
   },
   {
-    icon: createImg('../assets/Frame(9).png'),
+    icon: '/src/assets/Frame(9).png',
     title: 'SERVICES',
     subTitle: 'AREAS OF EXPERTISE'
   },
   {
-    icon: createImg('../assets/Frame(1).png'),
+    icon: '/src/assets/Frame(1).png',
     title: 'WORKS',
     subTitle: 'CASE STUDIES'
   },
@@ -53,12 +55,12 @@ const grid = reactive([
     subTitle: 'START YOUR JOURNEY WITH US'
   },
   {
-    icon: createImg('../assets/Frame(2).png'),
+    icon: '/src/assets/Frame(2).png',
     title: 'CAREERS',
     subTitle: 'BE COOL WITH US'
   },
     {
-    icon: createImg('../assets/Frame(3).png'),
+    icon: '/src/assets/Frame(3).png',
     title: 'INSIGHTS',
     subTitle: 'OUR STRATEGIES'
   }
@@ -74,54 +76,41 @@ const emit = defineEmits(['close'])
 
 watch(props, (prop) => {
   if (prop.isShow) {
-    gsap.to('.menu', 0.3, {width: '100vw'});
+    gsap.to('.menu', 0.5, {width: '100vw'});
     textAnimation()
     document.body.style.overflow = 'hidden';
     //document.addEventListener("touchmove", m, { passive: false });//禁止页面滑动
   } else {
     //開啟頁面滾動
-  textAnimation(true)
-  gsap.to('.menu', 0.5, {width: 0,   delay: 0.3});
-
+    textAnimation(true)
+    gsap.to('.menu', 0.5, {width: 0, delay: 0.3});
     document.body.style.overflow = '';//出現滾動條
   }
 })
-const leftAnimationArr = reactive([])
-const rightAnimationArr = reactive([])
+const animationArr  = reactive([])
 
 const textAnimation = (reverse) => {
-  // .menu-grid:nth-of-type(odd) .animation-wrapper'
-  const leftElements = document.querySelectorAll('.menu-grid:nth-of-type(odd) .animation-wrapper')
-  const rightElements = document.querySelectorAll('.menu-grid:nth-of-type(even) .animation-wrapper')
-    console.log(gsap.utils.toArray('.menu-grid:nth-of-type(odd) .animation-wrapper'))
+  const elements = document.querySelectorAll('.menu-grid .animation-wrapper')
   if(reverse) {
-    console.log(leftAnimationArr)
-    leftAnimationArr.forEach((el,idx)=>{
-      el.reverse();
-    })
-    rightAnimationArr.forEach((el,idx)=>{
+    animationArr.forEach((el,idx)=>{
       el.reverse();
     })
     return
   }
 
-  leftAnimationArr.length = 0
-  rightAnimationArr.length = 0
-  leftElements.forEach((el,idx)=> {
-    const animation= gsap.to(el, 0.5, {
-      delay: 0.2* idx,
-      left: 0,
-       ease: Expo.in,
-    });
-    leftAnimationArr.push(animation)
-  })
-  rightElements.forEach((el,idx)=>{
-    const animation = gsap.to(el, 0.5, {
-      delay: 0.2*idx,
-      right: 0,
-       ease: Expo.in,
-    });
-    rightAnimationArr.push(animation)
+  animationArr.length = 0
+  elements.forEach((el,idx)=> {
+    const animation=gsap.timeline()
+      .set( el,{opacity: 0,scale: 0.6})
+      .to( el, {
+      opacity: 1,
+      scale: 1,
+      stagger:0.3,
+      ease: Expo.in,
+      delay: 0.2,
+      duration: 0.6
+    })
+    animationArr.push(animation)
   })
 }
 </script>
@@ -156,9 +145,9 @@ const textAnimation = (reverse) => {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  padding: px2rem(24) px2rem(32);
+  margin: px2rem(24) px2rem(32);
 }
 .menu-grid-wrapper {
   flex:1;
@@ -171,14 +160,6 @@ header {
   position: relative;
   grid-column-start: 1;
   grid-column-end: 2;
-  .animation-wrapper {
-    left: -100vw
-  }
-}
-.menu-grid:nth-child(5){
-    .animation-wrapper {
-    left: -100vw
-  }
 }
 .menu-grid:nth-child(1) {
   grid-row-start: 2;
@@ -207,14 +188,6 @@ header {
   position: relative;
   grid-column-start: 3;
   grid-column-end: 4;
-  .animation-wrapper {
-    right: -100vw
-  }
-}
-.menu-grid:nth-child(6) {
-   .animation-wrapper {
-    right: -100vw
-  }
 }
 .menu-grid:nth-child(2) {
   grid-row-start: 2;
@@ -303,9 +276,13 @@ header {
   background: linear-gradient(180deg, #585880 3.61%, #26c6d0 95.7%);
   opacity: 0.9;
 }
-.close {
+.closeBtn {
   width: 24px;
   height: 24px;
+  .close {
+    width: 100%;
+    height: 100%;
+  }
 }
 .close::before,
 .close::after {

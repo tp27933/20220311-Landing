@@ -10,12 +10,19 @@
       </button>
     </header>
     <div class="solgan">
-      <h1>
+      <div class="minHeight-container">
+         <h1 >
         <a href="/" class="g-logo">DigiSalad</a>
       </h1>
+      </div>
+
       <div class="text">
         <p>WE CREATE</p>
-        <p>AMAZING</p>
+        <div  class="hightline">
+          <div><p class="upperCase">amazing</p></div>
+          <div><p class="upperCase">wonderful</p></div>
+          <div><p class="upperCase">professional</p></div>
+        </div>
         <p>DIGITAL EXPERIECES</p>
       </div>
     </div>
@@ -30,7 +37,7 @@
     </div>
   </section>
 
-  <div class="about-wrapper px-4 px-md-6">
+  <div class="about-wrapper px-4 px-md-8 px-lg-main mx-lg-11">
     <IntroductionBoard
       titleClass="about"
       :showButton="true"
@@ -50,7 +57,7 @@
     </IntroductionBoard>
   </div>
 
-  <div class="awards-wrapper gx-0 ms-3 ms-sm-5 row ps-5">
+  <div class="awards-wrapper px-4 ps-md-6 gx-0 ms-md-8 ms-lg-main row">
     <IntroductionBoard
       class="introductionBoard col-12 col-md-6 col-lg-4"
       titleClass="awards"
@@ -58,38 +65,43 @@
       :content="awards.content"
       :showButton="false"
     />
-    <div class="award-pic-wrapper pt-md-5 row mb-auto col-md-6  col-12">
-      <div class="award-img col-6" />
-      <div class="award-img col-6" />
-      <div class="award-img col-6" />
-      <div class="award-img col-6" />
+    <div class="award-pic-wrapper mt-auto  ps-sm-6 row col-12 col-md-6 col-lg-8 pe-md-2 pe-lg-main">
+      <div class="award-img col-12 col-lg-6" />
+      <div class="award-img col-12 col-lg-6" />
+      <div class="award-img col-12 col-lg-6" />
+      <div class="award-img col-12 col-lg-6" />
     </div>
   </div>
 
   <div class="ingardients-wrapper">
     <div class="bg" />
     <IntroductionBoard
+      class="px-4 px-md-8 px-lg-main mx-lg-11"
       titleClass="ingardients"
       :title="ingardients.title"
       :content="ingardients.content"
       :buttonText="ingardients.button"
       btnColor=" #585880"
     />
-    <ul class="ingardient-gird gx-0 row px-4 px-md-6">
-      <li class="ingardient-gird-item col-6 col-md-4" v-for="(item, idx) in ingardientGrid" :key="`food-${idx}`">
-        <div class="img-wrapper">
-          <img :src="item.img" alt />
-        </div>
-        <h4 class="name">{{ item.name }}</h4>
-        <p class="content">{{ item.content }}</p>
-        <button>view more</button>
-      </li>
-    </ul>
+    <div class="mx-md-8 mx-lg-main">
+      <ul class="ingardient-gird gx-4 row px-4 px-md-6 ">
+        <li class="ingardient-gird-item col-6 col-md-4" v-for="(item, idx) in ingardientGrid" :key="`food-${idx}`">
+          <div class="img-wrapper" @mouseenter="bounceEnter">
+            <img :src="item.img" alt />
+          </div>
+          <h4 class="name">{{ item.name }}</h4>
+          <p class="content">{{ item.content }}</p>
+          <button>view more</button>
+        </li>
+      </ul>
+    </div>
+
     <span class="btn-view crossLine">VIEW MORE DIGISALAD’S INGRADIENTS</span>
   </div>
-
-  <div class="founder-wrapper w-100 w-sm-90 w-md-80 w-lg-70 px-4 px-md-6 flex-column flex-sm-row">
-    <div class="founder-profile w-sm-30 w-100">
+ <!-- w-100 w-sm-90 w-md-80 w-lg-70 -->
+  <div class="pe-0 ps-md-0 pe-md-6">
+    <div class="founder-wrapper  flex-column flex-sm-row ps-md-6 gx-0 me-md-8 me-lg-main px-4 pe-md-6">
+       <div class="founder-profile w-sm-30 w-100">
       <img src="../assets/funder.png" alt />
       <h4 class="name letterAnimation" v-html="funderNameAnmation"></h4>
       <p class="title letterAnimation" v-html="funderTitleAnmation"></p>
@@ -101,9 +113,12 @@
         <bold>right experience to the right person at the right time.</bold>The most important thing is that your work can engage customers at anytime, anywhere and let users experience an entire amazing digital journey.
       </p>
     </div>
+    </div>
+
   </div>
   <div class="brand-wrapper px-4 px-md-6">
     <IntroductionBoard
+      class="px-4 px-md-8 px-lg-main mx-lg-11"
       titleClass="brands"
       :title="brand.title"
       :content="brand.content"
@@ -115,7 +130,7 @@
     </IntroductionBoard>
   </div>
 
-  <section class="moblie-wrapper flex-column flex-md-row p-5  p-md-8 p-lg-12">
+  <section class="moblie-wrapper flex-column flex-md-row p-5 px-4  p-md-8 p-lg-main">
     <span class="icon nex-btn">
       <img src="../assets/arrow-left.png" alt="">
     </span>
@@ -144,9 +159,11 @@
 import IntroductionBoard from '../components/IntroductionBoard.vue'
 import SideMenu from '../components/SideMenu.vue'
 import { onMounted, reactive, ref, toRefs, watch, nextTick } from 'vue'
-import { gsap, Expo } from 'gsap'
+import { gsap, Bounce, Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Flip } from 'gsap/Flip'
 gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(Flip);
 
 const info = reactive({
   about: {
@@ -173,55 +190,55 @@ const info = reactive({
 const { about, ingardients, brand, awards } = toRefs(info)
 const ingardientGrid = reactive([
   {
-    img: new URL('../assets/Frame.png', import.meta.url).href,
+    img: '/src/assets/Frame.png',
     name: 'UX Design',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: new URL('../assets/Frame(1).png', import.meta.url).href,
+    img: '/src/assets/Frame(1).png',
     name: 'UX Design',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: new URL('../assets/Frame(2).png', import.meta.url).href,
+    img: '/src/assets/Frame(2).png',
     name: 'website development',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: new URL('../assets/Frame(3).png', import.meta.url).href,
+    img: '/src/assets/Frame(3).png',
     name: 'mobile app development',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: new URL('../assets/Frame(4).png', import.meta.url).href,
+    img: '/src/assets/Frame(4).png',
     name: 'ecommerce',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: new URL('../assets/Frame(5).png', import.meta.url).href,
+    img: '/src/assets/Frame(5).png',
     name: 'customer loyalty',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: new URL('../assets/Frame(6).png', import.meta.url).href,
+    img: '/src/assets/Frame(6).png',
     name: 'digital transformation',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: new URL('../assets/Frame(7).png', import.meta.url).href,
+    img: '/src/assets/Frame(7).png',
     name: 'digital marketing',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: new URL('../assets/Frame(8).png', import.meta.url).href,
+    img: '/src/assets/Frame(8).png',
     name: 'BRANDING',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   }
 ])
 const isShowMenu = ref(false)
 const setMenu = () => {
+  logoAnimation()
   isShowMenu.value = !isShowMenu.value
-  console.log(isShowMenu.value)
 }
 /* 特效部分 */
 const funderNameAnmation = ref('Tony Ng'.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"))
@@ -237,11 +254,28 @@ onMounted(() => {
   }, 0)
   textAnimation()
 })
+/* landning text animation */
+function bounceEnter(elClass) {
+  const el = elClass.target.children[0]
+  gsap.to(el, 1 / 4, {y:-40, ease:Power2.easeOut});
+  gsap.to(el, 1 / 2, {y:0, ease:Bounce.easeOut, delay:1 / 4});
+}
+const logoAnimation = () => {
+ const el =  document.querySelector('.solgan h1')
+ let state = Flip.getState(el);
+ el.classList.toggle('toggleLogo')
+  Flip.from(state, {
+    absolute: true, // uses position: absolute during the flip to work around flexbox challenges
+    duration: 0.5,
+    stagger: 0.1,
+    ease: "back.in(0.8)"
+  })
+}
+
 const textAnimation = async () => {
     await nextTick
     const letters = document.querySelector('.founder-profile');
     const animationEl = letters.querySelectorAll('.letterAnimation span')
-    console.log(animationEl)
     if(animationEl.length === 0 ) return
     const tl = gsap.timeline({paused: true});
     animationEl.forEach(element => {
@@ -255,11 +289,10 @@ const textAnimation = async () => {
         animation: tl,
         trigger: '.founder-wrapper',
         start: 'top +=200px',
-        markers: true
       });
     });
-
 }
+
 </script>
 
 <style scoped lang="scss">
@@ -276,9 +309,8 @@ $ue-width: 1440; /* ue图的宽度 */
   position: relative;
   background: url(../assets/bg.png);
   .solgan {
-    top: px2rem(181);
     margin-left: 16%;
-    .text {
+    .text p{
       color: #fff;
       font-weight: 700;
       font-size: px2rem(32);
@@ -307,6 +339,60 @@ header {
     background: linear-gradient(90deg, #4ee5ea 3.94%, #26d0a8 94.73%);
   }
 }
+.minHeight-container {
+  min-height: 80px;
+}
+.solgan {
+  h1 {
+    position: relative;
+    z-index: 9999;
+  }
+}
+.solgan .toggleLogo {
+  position: absolute;
+  z-index: 9999;
+  top: 1.2rem;
+  left: 1.6rem;
+  transform: scale(0.6);
+}
+.solgan {
+ .hightline {
+    display: inline-block;
+    height: 50px;
+    // line-height: 48px;
+    overflow: hidden;
+    div {
+      background: #26C6D0;
+    }
+    div:first-child {
+      animation: show 5s linear infinite;
+    }
+    p {
+      padding:4px 12px;
+      height:45px;
+      margin-bottom:45px;
+    }
+    div:nth-child(2) {
+      background: #FFBC58;
+    }
+    div:nth-child(3) {
+      background: #DC143C;
+    }
+ }
+}
+
+@keyframes show {
+  0% {margin-top:-270px;}
+  5% {margin-top:-180px;}
+  33% {margin-top:-180px;}
+  38% {margin-top:-90px;}
+  66% {margin-top:-90px;}
+  71% {margin-top:0px;}
+  99.99% {margin-top:0px;}
+  100% {margin-top:-270px;}
+}
+
+
 .icon-menu {
   display: block;
   width: 30px;
@@ -402,7 +488,7 @@ header {
   color: #fff;
   text-align: center;
   .bg {
-    z-index: -1;
+    z-index: 0;
     position: absolute;
     top: -10%;
     left: 0;
@@ -427,7 +513,7 @@ header {
    letter-spacing: 2px;
   }
 }
-.crossLine::before {
+.crossLine::after {
   content: '';
   z-index: -1;
   position: absolute;
@@ -477,6 +563,7 @@ header {
 .founder-wrapper {
   margin-top: px2rem(96);
   padding: px2rem(96) px2rem(88);
+  position: relative;
   display: flex;
   border-radius: 0 32px 32px 32px;
   background-color: #fff;
@@ -519,22 +606,29 @@ header {
 }
 
 .awards-wrapper {
+  z-index: 999;
   position: relative;
   top: 0;
   left: 0;
   padding-bottom: px2rem(88);
   background: #fff;
   border-radius: 32px 0 0 32px;
-  img {
-    object-fit: contain;
+  ::v-deep(.title-wrapper) {
+    text-align: left;
   }
 }
 .award-pic-wrapper {
-  .award-img {
-    width: px2rem(280);
-    height: px2rem(104);
+  .award-img{
+    position: relative;
+    overflow: hidden;
     background: url(../assets/award.png) center no-repeat;
-  }
+    background-size: contain;
+	&:before{
+		content: "";
+		display: block;
+		padding-top: 50%;
+	}
+}
 }
 
 .brand-wrapper {

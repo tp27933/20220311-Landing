@@ -17,8 +17,11 @@ $spacers: (
   8: $spacer * 4.5,
   9: $spacer * 5,
   10: $spacer * 6,
+  11: $spacer * 8,
   12: $spacer * 10,
-
+  'main': $spacer * 8,
 );
 
 $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
+
+

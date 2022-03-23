@@ -1,15 +1,12 @@
 
 
 <template>
-  <section class="info-board-wrapper">
+  <section class=" info-board-wrapper">
     <div class="title-wrapper">
       <p class="title anim-typewriter" :class="titleClass"></p>
       <span class="dot" />
     </div>
-
-    <div class="video-container video-ratio-4by3">
       <slot name="video" />
-    </div>
     <p class="content">{{ content }}</p>
 
     <button class="btn-view" v-if="showButton">{{ buttonText }} <span class="line" />  </button>
@@ -39,7 +36,6 @@ const titleAnimation = () => {
     scrollTrigger: {
       trigger: '.' + titleClass, //觸發得物件
       start: "top +=500px", // (物件開始位置, 卷軸開始位置) top center bottom px
-      markers: true // 顯示標記
     }
   })
 }
@@ -77,7 +73,6 @@ $ue-width: 1440; /* ue图的宽度 */
   text-align: center;
 }
 .title-wrapper {
-  position: relative;
   & .dot {
     display: inline-block;
     width: 10px;
@@ -87,11 +82,11 @@ $ue-width: 1440; /* ue图的宽度 */
   }
 }
 .title {
-  display: inline-block;
   position: relative;
   padding-top: 104px;
   padding-bottom: 10px;
   margin-bottom: 24px;
+  display: inline-block;
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;

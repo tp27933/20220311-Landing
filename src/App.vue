@@ -6,21 +6,25 @@
 </template>
 
 <style>
+
 html {
   font-size: 14px;
+  overflow-y: auto;
+}
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 *,
 body {
-  margin: 0;
-  padding: 0;
   font-family: proxima-nova;
   box-sizing: border-box;
 }
 body {
-  background: #e5e5e5;
-  overflow-x: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 #app {
-  width: 100vw;
+  background: #e5e5e5;
 }
 </style>
