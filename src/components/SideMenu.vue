@@ -35,17 +35,17 @@ import { gsap, Expo } from 'gsap'
 // }
 const grid = reactive([
   {
-    icon: '/src/assets/Frame.png',
+    icon: '/src//assets/Frame.png',
     title: 'ABOUT US',
     subTitle: 'EMPOWERING BRANDS',
   },
   {
-    icon: '/src/assets/Frame(9).png',
+    icon: '/src//assets/Frame(9).png',
     title: 'SERVICES',
     subTitle: 'AREAS OF EXPERTISE'
   },
   {
-    icon: '/src/assets/Frame(1).png',
+    icon: '/src//assets/Frame(1).png',
     title: 'WORKS',
     subTitle: 'CASE STUDIES'
   },
@@ -55,12 +55,12 @@ const grid = reactive([
     subTitle: 'START YOUR JOURNEY WITH US'
   },
   {
-    icon: '/src/assets/Frame(2).png',
+    icon: '/src//assets/Frame(2).png',
     title: 'CAREERS',
     subTitle: 'BE COOL WITH US'
   },
     {
-    icon: '/src/assets/Frame(3).png',
+    icon: '/src//assets/Frame(3).png',
     title: 'INSIGHTS',
     subTitle: 'OUR STRATEGIES'
   }
@@ -121,8 +121,8 @@ const textAnimation = (reverse) => {
 }
 
 .menu {
-  z-index: 999;
-  position: absolute;
+  z-index: 9999;
+  position: fixed;
   top: 0;
   right: 0;
   display: flex;

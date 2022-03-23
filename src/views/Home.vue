@@ -79,10 +79,10 @@
       :showButton="false"
     />
     <div class="award-pic-wrapper mt-auto  ps-sm-6 row col-12 col-md-6 col-lg-8 pe-md-2 pe-lg-main">
-      <div class="award-img col-12 col-md-6" />
-      <div class="award-img col-12 col-md-6" />
-      <div class="award-img col-12 col-md-6" />
-      <div class="award-img col-12 col-md-6" />
+      <div class="award-img col-12 col-sm-6" />
+      <div class="award-img col-12 col-sm-6" />
+      <div class="award-img col-12 col-sm-6" />
+      <div class="award-img col-12 col-sm-6" />
     </div>
   </div>
 
@@ -203,47 +203,47 @@ const info = reactive({
 const { about, ingardients, brand, awards } = toRefs(info)
 const ingardientGrid = reactive([
   {
-    img: '/src/assets/Frame.png',
+    img: '/src//assets/Frame.png',
     name: 'UX Design',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: '/src/assets/Frame(1).png',
+    img: '/src//assets/Frame(1).png',
     name: 'UX Design',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: '/src/assets/Frame(2).png',
+    img: '/src//assets/Frame(2).png',
     name: 'website development',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: '/src/assets/Frame(3).png',
+    img: '/src//assets/Frame(3).png',
     name: 'mobile app development',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: '/src/assets/Frame(4).png',
+    img: '/src//assets/Frame(4).png',
     name: 'ecommerce',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: '/src/assets/Frame(5).png',
+    img: '/src//assets/Frame(5).png',
     name: 'customer loyalty',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: '/src/assets/Frame(6).png',
+    img: '/src//assets/Frame(6).png',
     name: 'digital transformation',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: '/src/assets/Frame(7).png',
+    img: '/src//assets/Frame(7).png',
     name: 'digital marketing',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   },
   {
-    img: '/src/assets/Frame(8).png',
+    img: '/src//assets/Frame(8).png',
     name: 'BRANDING',
     content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
   }
@@ -397,8 +397,8 @@ header {
   }
 }
 .solgan .toggleLogo {
-  position: absolute;
-  z-index: 9999;
+  position: fixed;
+  z-index: 99999;
   top: 1.2rem;
   left: 1.6rem;
   transform: scale(0.6);
