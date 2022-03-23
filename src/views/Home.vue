@@ -79,10 +79,10 @@
       :showButton="false"
     />
     <div class="award-pic-wrapper mt-auto  ps-sm-6 row col-12 col-md-6 col-lg-8 pe-md-2 pe-lg-main">
-      <div class="award-img col-12 col-lg-6" />
-      <div class="award-img col-12 col-lg-6" />
-      <div class="award-img col-12 col-lg-6" />
-      <div class="award-img col-12 col-lg-6" />
+      <div class="award-img col-12 col-md-6" />
+      <div class="award-img col-12 col-md-6" />
+      <div class="award-img col-12 col-md-6" />
+      <div class="award-img col-12 col-md-6" />
     </div>
   </div>
 
@@ -112,7 +112,7 @@
     <span class="btn-view crossLine">VIEW MORE DIGISALAD’S INGRADIENTS</span>
   </div>
  <!-- w-100 w-sm-90 w-md-80 w-lg-70 -->
-  <div class="pe-0 ps-md-0 pe-md-6">
+  <div class="pe-0 bg-light ps-md-0 pe-md-6">
     <div class="founder-wrapper  flex-column flex-sm-row ps-md-6 gx-0 me-md-8 me-lg-main px-4 pe-md-6">
        <div class="founder-profile w-sm-30 w-100">
       <img src="../assets/funder.png" alt />
