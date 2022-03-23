@@ -250,6 +250,9 @@ header {
   display: flex;
   padding:  px2rem(28)  px2rem(12);;
   border-radius: 15px;
+  img {
+    margin-right: 10px;
+  }
 }
 .menu-grid .animation-wrapper {
    display: flex;

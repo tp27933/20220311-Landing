@@ -57,9 +57,7 @@ const props = defineProps({
   },
 })
 const { titleClass, title, btnColor } = props
-// watch(titleClass, (val) => {
-//   console.log(val)
-// })
+
 </script>
 <style scoped lang="scss">
 @import '../assets/style/bootstrap/utilities';

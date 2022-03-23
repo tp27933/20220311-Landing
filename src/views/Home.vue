@@ -1,12 +1,25 @@
 <template>
   <SideMenu :isShow="isShowMenu" @close="setMenu" />
-  <section class="landing">
-    <header class="relative flex-sm-row flex-column align-items-sm-center align-items-end">
-      <button class="build-project-button upperCase w-sm-25 w-100">
+  <nav class="sticky-nav sticky-top bg-light">
+    <h1 class="mb-0">
+      <a href="/" class="g-logo colorful">DigiSalad</a>
+    </h1>
+    <div class="btns-group-warpper">
+      <button class="build-project-button upperCase">
         <a href="#">start your project</a>
       </button>
-      <button @click.prevent="setMenu" class="menu-button mt-4 mt-sm-0 ms-sm-4">
-        <a href="#" class="icon-menu" />
+      <button @click.prevent="setMenu" class="menu-button">
+        <a href="#" class="icon-menu dark" />
+      </button>
+    </div>
+  </nav>
+  <section class="landing">
+    <header class="relative px-4 pt-4 pb-12 align-items-center justify-content-between justify-content-sm-end">
+      <button class="build-project-button upperCase ">
+        <a href="#">start your project</a>
+      </button>
+      <button @click.prevent="setMenu" class="menu-button ms-sm-6">
+        <a href="#" class="icon-menu light" />
       </button>
     </header>
     <div class="solgan">
@@ -141,7 +154,7 @@
       <img src="../assets/LP_fb.png" class="LP-fb"/>
       <button
       class=" btn-view upperCase "
-      >view project</button>
+      >view project  <span class="line" /></button>
     </div>
     <div class="moblie-content p-0 p-sm-5 ps-md-5 ">
       <p class="subtitle">HIGHLIGHTED SHOWCASE</p>
@@ -253,6 +266,7 @@ onMounted(() => {
     ease: "animEase "
   }, 0)
   textAnimation()
+  stickyNavAnimation()
 })
 /* landning text animation */
 function bounceEnter(elClass) {
@@ -292,7 +306,24 @@ const textAnimation = async () => {
       });
     });
 }
-
+/*  sticky nav animation */
+const stickyNavAnimation = () => {
+  // gsap.set('.sticky-nav',{ autoAlpha:0 })
+  gsap.to('.sticky-nav', {
+    display: 'flex',
+    height: 80,
+    duration: 5,
+    opacity:1,
+    ease: "power3",
+    scrollTrigger: {
+      trigger: ".about-wrapper",
+      scrub: 0.3 ,
+      markers: true,
+      start: "top top",
+      end: "bottom bottom",
+    }
+  });
+}
 </script>
 
 <style scoped lang="scss">
@@ -330,13 +361,30 @@ $ue-width: 1440; /* ue图的宽度 */
 header {
   display: flex;
   justify-content: flex-end;
-  padding: px2rem(40);
-  .build-project-button {
-    padding: 12px;
-    color: #fff;
-    font-size: px2rem(16);
-    border-radius: 25px;
-    background: linear-gradient(90deg, #4ee5ea 3.94%, #26d0a8 94.73%);
+}
+.build-project-button {
+  padding: 12px;
+  color: #fff;
+  font-size: px2rem(16);
+  border-radius: 25px;
+  background: linear-gradient(90deg, #4ee5ea 3.94%, #26d0a8 94.73%);
+}
+.sticky-nav {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  a {
+    width: px2rem(120)
+  }
+  .icon-menu {
+    width: 2rem;
+  }
+  .btns-group-warpper {
+    display: flex;
   }
 }
 .minHeight-container {
@@ -397,7 +445,13 @@ header {
   display: block;
   width: 30px;
   height: 22px;
-  background: url(../assets/icon-menu.png) 0 0 no-repeat;
+
+}
+.icon-menu.dark {
+background: url(../assets/icon-menu-dark.png) center no-repeat;
+}
+.icon-menu.light {
+  background: url(../assets/icon-menu.png) center no-repeat;
 }
 .vertical-text {
   font-size: 1rem;
@@ -498,11 +552,11 @@ header {
     background: #26c6d0;
   }
   button {
-    padding: 24px 35px;
-    font-size: 14px;
+    padding: 21px 35px;
+    font-size: px2rem(18);
     color: #fff;
     border: 2px solid #fff;
-    border-radius: 30px;
+    border-radius: 50px;
   }
   .btn-view {
    padding-top: 96px;
@@ -511,6 +565,12 @@ header {
    font-size: px2rem(24);
    font-weight: 700;
    letter-spacing: 2px;
+  }
+  ::v-deep(.ingardients) {
+    color: #fff;
+  }
+  ::v-deep(.title::after) {
+    background: url(../assets/wave2.png) center 0 no-repeat;
   }
 }
 .crossLine::after {
@@ -602,6 +662,9 @@ header {
     font-size: px2rem(22);
     line-height: px2rem(48);
     letter-spacing: 2px;
+    bold {
+      color: #FFBC58;
+    }
   }
 }
 
@@ -663,6 +726,13 @@ header {
     bottom: -10%;
     @include primaryBtn();
     font-size: px2rem(16);
+    .line {
+      display: inline-block;
+      height: 2px;
+      width: 32px;
+      vertical-align: middle;
+      background: #fff;
+    }
   }
 }
 .moblie-wrapper {
@@ -687,12 +757,12 @@ header {
   }
   .title {
     z-index: 999;
+    display: inline-block;
     position: relative;
     font-weight: 700;
     font-size: px2rem(32);
     line-height: 39px;
     letter-spacing: 3.63636px;
-
   }
   .context {
     font-size: px2rem(16);

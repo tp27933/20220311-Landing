@@ -9,12 +9,12 @@
 
 html {
   font-size: 14px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
-:root {
+/* :root {
   overflow-y: auto;
   overflow-x: hidden;
-}
+} */
 *,
 body {
   font-family: proxima-nova;
@@ -22,7 +22,7 @@ body {
 }
 body {
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 #app {
   background: #e5e5e5;

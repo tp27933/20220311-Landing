@@ -55,14 +55,9 @@ html {
         padding: 12px 10px;
         border-radius: 0;
         flex:1;
+        justify-content: flex-start;
         flex-direction: row;
         align-items: center;
-      }
-      .menu-grid:nth-child(n) {
-        justify-content: flex-start;
-      }
-      .menu-grid:nth-child(2n) {
-        justify-content: flex-end;
       }
     }
   }
@@ -100,7 +95,11 @@ html {
   }
 }
 
-
+.landing .toggleLogo {
+  @include media-breakpoint-down(sm) {
+    top: 0!important;
+  }
+}
 .g-logo {
   position: relative;
   display: block;
@@ -112,3 +111,7 @@ html {
   background-size: contain;
 }
 
+.g-logo.colorful {
+  background: url(../logo-colorful.png) center no-repeat;
+  background-size: contain;
+}
